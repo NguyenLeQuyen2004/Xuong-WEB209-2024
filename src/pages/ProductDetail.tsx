@@ -1,25 +1,16 @@
-import {
-  Box,
-  Button,
-  CardContent,
-  CardMedia,
-  Rating,
-  Typography,
-} from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { Container, Image } from "react-bootstrap";
+import { Button, CardContent, CardMedia, Typography } from "@mui/material";
+import { useEffect, useState } from "react";
+import { Container } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import instance from "src/apis";
-import { Product } from "src/interfaces/Product";
-import StarIcon from "@mui/icons-material/Star";
 import Loading from "src/components/Loading";
-type Props = {};
-const ProductDetail = (props: Props) => {
+import { Product } from "src/types/Product";
+const ProductDetail = () => {
   const { id } = useParams();
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [quantity, setQuantity] = useState<number>(0);
-  const value = 3.5;
+
   useEffect(() => {
     setLoading(true);
     const getProduct = async (id: string) => {
@@ -50,14 +41,14 @@ const ProductDetail = (props: Props) => {
   return (
     <div>
       <Loading isShow={loading} />
-      <Container>
+      <Container className="pr-detail">
         {product && (
           <div className="ctsp">
             <CardMedia
               component="img"
               alt="green iguana"
               height="400"
-              image={product.images}
+              image={product.image}
               sx={{ objectFit: "contain" }}
             />
             <CardContent>
@@ -70,24 +61,7 @@ const ProductDetail = (props: Props) => {
               <Typography variant="subtitle1" gutterBottom>
                 {product.description}
               </Typography>
-              <Box
-                sx={{
-                  width: 200,
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
-                <Rating
-                  name="text-feedback"
-                  value={value}
-                  readOnly
-                  precision={0.5}
-                  emptyIcon={
-                    <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
-                  }
-                />
-              </Box>
-              <br />
+              <Typography>Rate: {product.rating.count}</Typography>
               <Typography variant="subtitle1" gutterBottom>
                 Quantity
               </Typography>
@@ -114,52 +88,6 @@ const ProductDetail = (props: Props) => {
                 Add to cart
               </Button>
             </CardContent>
-
-            {/* <div className="nd">
-              <h3>{product.title}</h3>
-              <span>
-                <b>Price: ${product.price}</b>
-              </span>
-              <br />
-              <p>{product.description}</p>
-              <p>Category: </p>
-              <p>
-                Rating:
-                <Box
-                  sx={{
-                    width: 200,
-                    display: "flex",
-                    alignItems: "center",
-                  }}
-                >
-                  <Rating
-                    name="text-feedback"
-                    value={value}
-                    readOnly
-                    precision={0.5}
-                    emptyIcon={
-                      <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
-                    }
-                  />
-                </Box>
-              </p>
-              <p className="quantity">
-                <b>Quantity: </b>
-                <button className="button" onClick={decreaseQuantity}>
-                  -
-                </button>
-                <button className="button">{quantity}</button>
-                <button className="button" onClick={increaseQuantity}>
-                  +
-                </button>
-              </p>
-              <br />
-              <p>
-                <button className="button1" onClick={addToCart}>
-                  THÊM VÀO GIỎ HÀNG
-                </button>
-              </p>
-            </div> */}
           </div>
         )}
       </Container>

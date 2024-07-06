@@ -7,7 +7,7 @@ import {
   CardMedia,
   Typography,
 } from "@mui/material";
-import { Product } from "src/interfaces/Product";
+import { Product } from "src/types/Product";
 import { Link } from "react-router-dom";
 
 type ProductListProps = {
@@ -21,7 +21,7 @@ const ProductList: FC<ProductListProps> = ({ product }) => {
         component="img"
         alt="green iguana"
         height="140"
-        image={product.images}
+        image={product.image}
         sx={{ objectFit: "contain" }}
       />
       <CardContent>
