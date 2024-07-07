@@ -1,15 +1,27 @@
-import { Button, CardContent, CardMedia, Typography } from "@mui/material";
+import {
+  Alert,
+  Button,
+  CardContent,
+  CardMedia,
+  Typography,
+} from "@mui/material";
 import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import instance from "src/apis";
 import Loading from "src/components/Loading";
 import { Product } from "src/types/Product";
+
 const ProductDetail = () => {
   const { id } = useParams();
+  const [cart, setCart] = useState<
+    Array<{ product: Product; quantity: number }>
+  >([]);
+  const nav = useNavigate();
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [quantity, setQuantity] = useState<number>(0);
+  const [successMessage, setSuccessMessage] = useState<string>("");
 
   useEffect(() => {
     setLoading(true);
@@ -19,13 +31,16 @@ const ProductDetail = () => {
         setProduct(data);
       } catch (error) {
         console.log(error);
+        nav("*");
       } finally {
         setLoading(false);
       }
     };
-    if (!id) return;
+    if (!id) {
+      return;
+    }
     getProduct(id);
-  }, [id]);
+  }, [id, nav]);
 
   // quantity
   const decreaseQuantity = () => {
@@ -36,6 +51,20 @@ const ProductDetail = () => {
 
   const increaseQuantity = () => {
     setQuantity(quantity + 1);
+  };
+
+  const addToCart = () => {
+    if (product) {
+      if (quantity > 0) {
+        const item = {
+          product,
+          quantity,
+        };
+        const updatedCart = [...cart, item];
+        setCart(updatedCart);
+        setSuccessMessage("Product added to cart successfully!");
+      }
+    }
   };
 
   return (
@@ -84,9 +113,16 @@ const ProductDetail = () => {
               </Button>
               <br />
               <br />
-              <Button variant="contained" disableElevation>
+              <Button variant="contained" disableElevation onClick={addToCart}>
                 Add to cart
               </Button>
+              <br />
+              <br />
+              {successMessage && (
+                <Alert variant="filled" severity="success">
+                  {successMessage}
+                </Alert>
+              )}
             </CardContent>
           </div>
         )}

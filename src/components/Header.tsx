@@ -1,35 +1,32 @@
 import React from "react";
-import { Navbar } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+import { AppBar, Toolbar, Typography, Button, Box } from "@mui/material";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <div>
-      <header>
-        <ul>
-          <li>
-            <NavLink to="/" className="navLink">
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/about" className="navLink">
-              About
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/login" className="navLink">
-              Login
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/register" className="navLink">
-              Register
-            </NavLink>
-          </li>
-        </ul>
-      </header>
-    </div>
+    <AppBar position="static">
+      <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+        <Box sx={{ display: "flex", alignItems: "center" }}>
+          <Typography variant="h6" component="div" sx={{ marginRight: "1rem" }}>
+            My Website
+          </Typography>
+          <Button color="inherit">
+            <Link to="/">Home</Link>
+          </Button>
+          <Button color="inherit">
+            <Link to="/login">Login</Link>
+          </Button>
+          <Button color="inherit">
+            <Link to="/register">Register</Link>
+          </Button>
+        </Box>
+        <Button
+          color="inherit"
+          startIcon={<ShoppingCartIcon sx={{ fontSize: 40 }} />}
+        ></Button>
+      </Toolbar>
+    </AppBar>
   );
 };
 

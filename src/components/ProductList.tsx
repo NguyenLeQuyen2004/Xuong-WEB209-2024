@@ -16,7 +16,14 @@ type ProductListProps = {
 
 const ProductList: FC<ProductListProps> = ({ product }) => {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card
+      sx={{
+        maxWidth: 345,
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
       <CardMedia
         component="img"
         alt="green iguana"
@@ -24,21 +31,23 @@ const ProductList: FC<ProductListProps> = ({ product }) => {
         image={product.image}
         sx={{ objectFit: "contain" }}
       />
-      <CardContent>
+      <CardContent sx={{ flex: "1 0 auto" }}>
         <Typography gutterBottom variant="h5" component="div">
           <Link to={`/product/${product.id}`}>{product.title}</Link>
         </Typography>
         <Typography gutterBottom variant="h6" component="div">
           Price: ${product.price}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        {/* <Typography variant="body2" color="text.secondary">
           {product.description}
-        </Typography>
+        </Typography> */}
       </CardContent>
-      {/* <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
-      </CardActions> */}
+      <CardActions sx={{ alignSelf: "flex-end" }}>
+        {/* <Button size="small">Add to cart</Button> */}
+        <Button size="small">
+          <Link to={`/product/${product.id}`}>Learn More</Link>
+        </Button>
+      </CardActions>
     </Card>
   );
 };
