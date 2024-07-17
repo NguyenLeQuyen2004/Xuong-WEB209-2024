@@ -27,15 +27,18 @@ const Login = () => {
 
   const onSubmit = async (values: LoginFormParams) => {
     try {
-      const { data } = await instance.post("/auth/login", values);
+      const { data } = await instance.post("/login", values);
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data.user)); // dung de luu object
+      alert("Login success, switch to Admin?");
       nav("/admin");
-    } catch (error) {}
+    } catch (error: any) {
+      alert(error.response.data || "Error!");
+    }
   };
 
   return (
-    <Container>
+    <Container className="form">
       <Typography variant="h2" textAlign={"center"} mb={2}>
         Login
       </Typography>

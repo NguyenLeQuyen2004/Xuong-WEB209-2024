@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 const NotFound = () => {
   return (
     <div>
-      <Container>
-        <h2>404</h2>
+      <Container className="notfound">
+        <h1>404</h1>
         <h2>Oh, Not found!</h2>
         <h2>
           <Link to="/">Go to back home</Link>

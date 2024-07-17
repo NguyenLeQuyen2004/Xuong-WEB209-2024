@@ -62,9 +62,6 @@ function List() {
           <Typography variant="h2" textAlign={"center"}>
             Product List
           </Typography>
-          {/* <Link to="/admin/product/add">
-            <Button variant="contained">Add Product</Button>
-          </Link> */}
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 1200 }} aria-label="simple table">
               <TableHead>
@@ -99,7 +96,7 @@ function List() {
                         sx={{ objectFit: "contain" }}
                       />
                     </TableCell>
-                    {/* <TableCell align="right">{product.category.id}</TableCell> */}
+                    <TableCell align="right">{product.category}</TableCell>
                     <TableCell align="right">
                       <Stack
                         direction={"row"}

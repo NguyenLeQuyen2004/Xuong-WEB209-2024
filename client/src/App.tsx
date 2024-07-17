@@ -1,6 +1,5 @@
 import React, { Children } from "react";
 import { useRoutes } from "react-router-dom";
-import AdminLayout from "./layouts/AdminLayout";
 import List from "./pages/admin/product/List";
 import Add from "./pages/admin/product/Add";
 import Edit from "./pages/admin/product/Edit";
@@ -12,6 +11,8 @@ import ProductDetail from "./pages/ProductDetail";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
+import AdminLayout from "./layouts/AdminLayout";
+import Cart from "./pages/Cart";
 
 const routeConfig = [
   {
@@ -33,6 +34,10 @@ const routeConfig = [
       {
         path: "/register",
         element: <Register />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
   },

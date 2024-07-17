@@ -1,26 +1,32 @@
-import React from "react";
-import { Paper, Typography, Button, CardMedia } from "@mui/material";
+import { Box, Stack, styled, Typography } from "@mui/material";
+import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+type BannerProps = {
+  page: string;
+};
 
-const Banner: React.FC = () => {
+const Banner = () => {
   return (
-    <Paper elevation={2} sx={{ p: 2 }}>
-      <CardMedia
-        component="img"
-        height="300"
-        image="https://png.pngtree.com/template/20210618/ourlarge/pngtree-blue-grocery-store-online-shopping-banner-template-image_536404.jpg"
-        alt="Banner Image"
-      />
-      {/* <Typography variant="h6" gutterBottom>
-        Welcome to our website!
-      </Typography>
-      <Typography variant="body1" color="text.secondary">
-        Discover amazing products and enjoy exclusive discounts.
-      </Typography>
-      <Button variant="contained" color="primary">
-        Shop Now
-      </Button> */}
-    </Paper>
+    <>
+      <BannerImage>
+        <Stack justifyContent={"center"} alignItems={"center"} height={"100%"}>
+          <img />
+          <Typography fontSize={48}>Cart</Typography>
+          <Stack direction={"row"}>
+            <Typography fontWeight={500}>Home</Typography>
+            <NavigateNextIcon />
+            <Typography fontWeight={300}>Cart</Typography>
+          </Stack>
+        </Stack>
+      </BannerImage>
+    </>
   );
 };
 
 export default Banner;
+
+const BannerImage = styled(Box)({
+  backgroundImage: "url(./banner.png)",
+  height: "316px",
+});

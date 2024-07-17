@@ -4,7 +4,7 @@ export type Product = {
   price: number;
   image: string;
   description: string;
-  category: Category;
+  category: string;
   rating: {
     rate: number;
     count: number;
@@ -25,4 +25,8 @@ export type ProductFormParams = {
   description: string;
   category: string;
   isShow: boolean;
+};
+export type CartItem = {
+  product: Product;
+  quantity: number;
 };

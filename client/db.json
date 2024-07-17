@@ -5,7 +5,7 @@
       "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
       "price": 109.95,
       "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-      "category": "men's clothing",
+      "category": "668601a7be9e04f02ea662d9",
       "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
       "rating": {
         "rate": 3.9,
@@ -247,25 +247,36 @@
       "description": "123",
       "price": "1235",
       "id": 21
+    },
+    {
+      "isShow": true,
+      "title": "san pham 1",
+      "image": "https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_.jpg",
+      "description": "mo ta",
+      "price": "499.999",
+      "category": "66860195be9e04f02ea662d6",
+      "id": 22
     }
   ],
   "users": [
     {
       "email": "quyennlph37238@fpt.edu.vn",
-      "password": "$2a$10$bHzuzlq7MrB5dNlYAXbyhO/RWSlkQGL6a5VnDmkfw93HiqmphOQ6K",
+      "password": "$2a$10$jvBpPFSPXcAWGZPj8W5aseLqV9zSZuWXMOhmdLfeVojd2UeViKzY6",
       "username": "Nguyen Le Quyen",
+      "confirmPassword": "12345678",
       "id": 1
     },
     {
       "email": "donam230603@gmail.com",
-      "password": "$2a$10$g4b.Ra3k/411x0eFZWeOteB9wX/pApDlKVfHsj5YfLmxZQ4BtkBDO",
+      "password": "$2a$10$xPsspz8afdOh8ICTdYF9OeCen8LxFFZ4wRG89SBWrGw3pFza3QCay",
       "username": "Nam123",
+      "confirmPassword": "12345678",
       "id": 2
     },
     {
-      "email": "taikhoan555@gmail.com",
-      "password": "$2a$10$CpZ8U4ZBxwqpFs/3/6fMwOK3Fvv.nHrM/DC2/zqZ0rQzYQ2EwBtQi",
-      "username": "Nguyen Le Quyen",
+      "email": "taikhoan123@gmail.com",
+      "password": "$2a$10$EmIQ1OEZu1aEbgZyQUzpJOYB/GBMAdUF6/YFLvhJIRsRNP5BD4KMG",
+      "username": "Quyen123",
       "confirmPassword": "12345678",
       "id": 3
     }

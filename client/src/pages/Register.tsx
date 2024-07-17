@@ -12,7 +12,7 @@ type RegisterFormParams = {
   username: string;
   email: string;
   password: string;
-  confirmPassword: string; // New field for confirm password
+  confirmPassword: string;
 };
 
 const Register = () => {
@@ -34,15 +34,16 @@ const Register = () => {
 
   const onSubmit = async (data: RegisterFormParams) => {
     try {
-      await instance.post("/auth/register", data);
+      await instance.post("/register", data);
+      alert("Register success, switch to Login?");
       nav("/login");
-    } catch (error) {
-      // Handle error
+    } catch (error: any) {
+      alert(error.response.data || "Error!");
     }
   };
 
   return (
-    <Container>
+    <Container className="form">
       <Typography variant="h2" textAlign="center" mb={2}>
         Register
       </Typography>

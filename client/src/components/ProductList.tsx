@@ -38,12 +38,8 @@ const ProductList: FC<ProductListProps> = ({ product }) => {
         <Typography gutterBottom variant="h6" component="div">
           Price: ${product.price}
         </Typography>
-        {/* <Typography variant="body2" color="text.secondary">
-          {product.description}
-        </Typography> */}
       </CardContent>
       <CardActions sx={{ alignSelf: "flex-end" }}>
-        {/* <Button size="small">Add to cart</Button> */}
         <Button size="small">
           <Link to={`/product/${product.id}`}>Learn More</Link>
         </Button>

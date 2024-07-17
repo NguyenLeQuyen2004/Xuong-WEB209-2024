@@ -1,70 +1,63 @@
+import React, { useEffect, useState } from "react";
+import { Container } from "react-bootstrap";
+import { useParams } from "react-router-dom";
+import instance from "src/apis";
+import Loading from "src/components/Loading";
+import { CartItem, Product } from "src/types/Product";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 import {
-  Alert,
   Button,
   CardContent,
   CardMedia,
+  IconButton,
+  Stack,
+  TextField,
   Typography,
 } from "@mui/material";
-import { useEffect, useState } from "react";
-import { Container } from "react-bootstrap";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
-import instance from "src/apis";
-import Loading from "src/components/Loading";
-import { Product } from "src/types/Product";
+import { useCart } from "src/contexts/ShoppingContext";
 
 const ProductDetail = () => {
+  const { setCart } = useCart();
   const { id } = useParams();
-  const [cart, setCart] = useState<
-    Array<{ product: Product; quantity: number }>
-  >([]);
-  const nav = useNavigate();
-  const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
+  const [product, setProduct] = useState<Product | undefined>();
   const [quantity, setQuantity] = useState<number>(0);
-  const [successMessage, setSuccessMessage] = useState<string>("");
+
+  const getProduct = async (id: string) => {
+    try {
+      setLoading(true);
+      const { data } = await instance.get(`/products/${id}`);
+      setProduct(data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    setLoading(true);
-    const getProduct = async (id: string) => {
-      try {
-        const { data } = await instance.get(`/products/${id}`);
-        setProduct(data);
-      } catch (error) {
-        console.log(error);
-        nav("*");
-      } finally {
-        setLoading(false);
-      }
-    };
-    if (!id) {
-      return;
-    }
+    if (!id) return;
     getProduct(id);
-  }, [id, nav]);
+  }, [id]);
 
-  // quantity
-  const decreaseQuantity = () => {
-    if (quantity >= 1) {
-      setQuantity(quantity - 1);
+  const handleAddToCart = (product: Product) => {
+    if (quantity <= 0) return;
+    const cartStorage = localStorage.getItem("carts") || "[]";
+    const carts = JSON.parse(cartStorage);
+
+    const findItem = carts.find(
+      (item: CartItem) => item.product.id === product.id
+    );
+
+    if (findItem) {
+      // tang quantity cho product: map
+    } else {
+      carts.push({ product, quantity });
     }
-  };
 
-  const increaseQuantity = () => {
-    setQuantity(quantity + 1);
-  };
-
-  const addToCart = () => {
-    if (product) {
-      if (quantity > 0) {
-        const item = {
-          product,
-          quantity,
-        };
-        const updatedCart = [...cart, item];
-        setCart(updatedCart);
-        setSuccessMessage("Product added to cart successfully!");
-      }
-    }
+    localStorage.setItem("carts", JSON.stringify(carts));
+    setCart(carts.length);
   };
 
   return (
@@ -91,38 +84,32 @@ const ProductDetail = () => {
                 {product.description}
               </Typography>
               {/* <Typography>Rate: {product.rating.count}</Typography> */}
-              <Typography variant="subtitle1" gutterBottom>
-                Quantity
-              </Typography>
-              <Button
-                variant="outlined"
-                size="small"
-                onClick={decreaseQuantity}
-              >
-                -
-              </Button>
-              <Button variant="outlined" size="small">
-                {quantity}
-              </Button>
-              <Button
-                variant="outlined"
-                size="small"
-                onClick={increaseQuantity}
-              >
-                +
-              </Button>
-              <br />
-              <br />
-              <Button variant="contained" disableElevation onClick={addToCart}>
-                Add to cart
-              </Button>
-              <br />
-              <br />
-              {successMessage && (
-                <Alert variant="filled" severity="success">
-                  {successMessage}
-                </Alert>
-              )}
+              <Stack direction="row" gap={2} alignItems="center">
+                <Typography>Quantity: </Typography>
+                <IconButton
+                  onClick={() => setQuantity(quantity === 0 ? 0 : quantity - 1)}
+                >
+                  <RemoveIcon />
+                </IconButton>
+                <TextField
+                  id="outlined-basic"
+                  label="quantity"
+                  variant="outlined"
+                  type="number"
+                  value={quantity}
+                  onChange={(e) => setQuantity(Number(e.target.value))}
+                />
+                <IconButton onClick={() => setQuantity(quantity + 1)}>
+                  <AddIcon />
+                </IconButton>
+
+                <Button
+                  variant="outlined"
+                  onClick={() => handleAddToCart(product)}
+                >
+                  Add to cart
+                </Button>
+              </Stack>
             </CardContent>
           </div>
         )}

@@ -1,32 +1,30 @@
-import {
-  useState,
-  useContext,
-  createContext,
-  ReactNode,
-  ReactElement,
-} from "react";
+import React, { createContext, useState, useContext, ReactNode } from "react";
 
-type CartContextType = {
+interface CartContextType {
   cart: number;
-  setCart: (cart: number) => void;
-};
-
-const CartContext = createContext<CartContextType>({
-  cart: 0,
-  setCart: () => null,
-});
-
-export function useCart(): CartContextType {
-  return useContext(CartContext);
+  setCart: React.Dispatch<React.SetStateAction<number>>;
 }
 
-type Props = {
+const CartContext = createContext<CartContextType | undefined>(undefined);
+
+export const useCart = (): CartContextType => {
+  const context = useContext(CartContext);
+  if (!context) {
+    throw new Error("useCart must be used within a CartProvider");
+  }
+  return context;
+};
+
+interface CartProviderProps {
   children: ReactNode;
-};
-
-export function CartProvider({ children }: Props): ReactElement {
-  const [cart, setCart] = useState<number>(0);
-  const value = { cart, setCart };
-
-  return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }
+
+export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
+  const [cart, setCart] = useState<number>(0);
+
+  return (
+    <CartContext.Provider value={{ cart, setCart }}>
+      {children}
+    </CartContext.Provider>
+  );
+};

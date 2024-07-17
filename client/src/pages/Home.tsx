@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { Product } from "src/types/Product";
 import instance from "src/apis";
 import Loading from "src/components/Loading";
-import { Container, Stack, Typography } from "@mui/material";
+import { Container, Stack } from "@mui/material";
 import ProductList from "src/components/ProductList";
 
 const Home = () => {

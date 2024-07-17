@@ -4,22 +4,9 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Link } from "react-router-dom";
 import { Product } from "src/types/Product";
 import { useCart } from "src/contexts/ShoppingContext";
-type Cart = {
-  product: Product;
-  quantity: number;
-};
 
 const Header = () => {
-  const { cart, setCart } = useCart();
-  const carts: Cart[] = useMemo(
-    () => JSON.parse(localStorage.getItem("carts") || "[]"),
-    []
-  );
-
-  useEffect(() => {
-    setCart(carts.length);
-  }, [carts]);
-
+  const { cart } = useCart();
   return (
     <AppBar position="static">
       <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -41,7 +28,10 @@ const Header = () => {
           </Button>
         </Box>
         <Badge badgeContent={cart} color="error">
-          <ShoppingCartIcon sx={{ sx: "40px" }} />
+          <Link to="/cart">
+            {" "}
+            <ShoppingCartIcon sx={{ sx: "40px" }} />{" "}
+          </Link>
         </Badge>
       </Toolbar>
     </AppBar>

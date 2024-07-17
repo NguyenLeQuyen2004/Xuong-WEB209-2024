@@ -153,3 +153,15 @@ footer {
 .home {
   margin: 100px;
 }
+
+.form {
+  margin: 10px;
+}
+
+.notfound {
+  text-align: center;
+  margin: 100px;
+}
+.notfound h1 {
+  color: red;
+}
