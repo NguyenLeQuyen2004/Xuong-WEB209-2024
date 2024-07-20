@@ -13,6 +13,7 @@ import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
 import AdminLayout from "./layouts/AdminLayout";
 import Cart from "./pages/Cart";
+import About from "./pages/About";
 
 const routeConfig = [
   {
@@ -26,6 +27,10 @@ const routeConfig = [
       {
         path: "/product/:id",
         element: <ProductDetail />,
+      },
+      {
+        path: "about",
+        element: <About />,
       },
       {
         path: "/login",
@@ -45,6 +50,10 @@ const routeConfig = [
     path: "/admin",
     element: <AdminLayout />,
     children: [
+      {
+        path: "",
+        element: <List />,
+      },
       {
         path: "product/list",
         element: <List />,

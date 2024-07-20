@@ -13,6 +13,7 @@ function Add() {
     try {
       setLoading(true);
       await instance.post("/products", values);
+      alert("Add successfull");
       nav("/admin/product/list");
     } catch (error) {
     } finally {
@@ -25,7 +26,7 @@ function Add() {
       <Container>
         <Stack gap={2}>
           <Typography variant="h3" textAlign={"center"}>
-            Add Product
+            Add New Product
           </Typography>
           <ProductForm onSubmit={onSubmit} initialValues={{ isShow: true }} />
         </Stack>

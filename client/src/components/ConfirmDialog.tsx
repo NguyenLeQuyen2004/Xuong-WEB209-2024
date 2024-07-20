@@ -42,7 +42,7 @@ export default function ConfirmDialog({
       <DialogActions>
         <ButtonCancel onClick={handleClose}>Cancel</ButtonCancel>
         <ButtonOk onClick={handleAgree} autoFocus>
-          OK
+          Yes
         </ButtonOk>
       </DialogActions>
     </Dialog>

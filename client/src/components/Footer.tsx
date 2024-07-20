@@ -8,13 +8,13 @@ const Footer: React.FC = () => {
         <Grid container justifyContent="space-between">
           <Grid item xs={12} sm={6} md={4}>
             <Typography variant="h6" gutterBottom>
-              Thông tin liên hệ
+              Contact Information
             </Typography>
             <Typography variant="body1" color="textPrimary">
-              Địa chỉ: 123 Đường ABC, Thành phố XYZ
+              Address: 123 ABC Street, XYZ City
             </Typography>
             <Typography variant="body1" color="textPrimary">
-              Số điện thoại: 0123456789
+              Phone: 0123456789
             </Typography>
             <Typography variant="body1" color="textPrimary">
               Email: info@example.com
@@ -22,29 +22,29 @@ const Footer: React.FC = () => {
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
             <Typography variant="h6" gutterBottom>
-              Liên kết
+              Links
             </Typography>
             <Typography variant="body1" component="nav">
               <Link href="/" color="textPrimary">
-                Trang chủ |
+                Home |
               </Link>
               <Link href="/about" color="textPrimary">
-                Giới thiệu |
+                About |
               </Link>
               <Link href="/products" color="textPrimary">
-                Sản phẩm |
+                Products |
               </Link>
               <Link href="/blog" color="textPrimary">
                 Blog |
               </Link>
               <Link href="/contact" color="textPrimary">
-                Liên hệ
+                Contact
               </Link>
             </Typography>
           </Grid>
           <Grid item xs={12} sm={12} md={4}>
             <Typography variant="h6" gutterBottom>
-              Kết nối xã hội
+              Connect with Us
             </Typography>
             <Typography variant="body1" component="nav">
               <li>
@@ -92,7 +92,7 @@ const Footer: React.FC = () => {
           align="center"
           marginTop={4}
         >
-          © 2024 quyennlph37238@fpt.edu.vn. Tất cả các quyền đã được bảo lưu.
+          © 2024 quyennlph37238@fpt.edu.vn. All rights reserved.
         </Typography>
       </Container>
     </footer>

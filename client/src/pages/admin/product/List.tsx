@@ -57,22 +57,21 @@ function List() {
   return (
     <>
       <Container>
+        <h1>Hello admin!</h1>
         <Flash isShow={showFlash} />
         <Stack gap={2}>
           <Typography variant="h2" textAlign={"center"}>
             Product List
           </Typography>
           <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 1200 }} aria-label="simple table">
+            <Table aria-label="simple table">
               <TableHead>
-                <TableRow component="th">
-                  <TableCell>ID</TableCell>
+                <TableRow component="th" sx={{ bgcolor: "#e1f5fe" }}>
                   <TableCell>Title</TableCell>
-                  <TableCell align="right">Price</TableCell>
-                  <TableCell align="right">Desciption</TableCell>
-                  <TableCell align="right">Image</TableCell>
-                  <TableCell align="right">Category</TableCell>
-                  <TableCell align="right">Actions</TableCell>
+                  <TableCell align="center">Image</TableCell>
+                  <TableCell align="center">Price</TableCell>
+                  <TableCell align="center">Desciption</TableCell>
+                  <TableCell align="center">Actions</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -82,11 +81,8 @@ function List() {
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
                     <TableCell component="td" scope="row">
-                      {product.id}
+                      {product.title}
                     </TableCell>
-                    <TableCell>{product.title}</TableCell>
-                    <TableCell align="right">${product.price}</TableCell>
-                    <TableCell align="right">{product.description}</TableCell>
                     <TableCell align="right">
                       <CardMedia
                         component="img"
@@ -96,7 +92,9 @@ function List() {
                         sx={{ objectFit: "contain" }}
                       />
                     </TableCell>
-                    <TableCell align="right">{product.category}</TableCell>
+                    <TableCell align="right">${product.price}</TableCell>
+                    <TableCell align="right">{product.description}</TableCell>
+                    {/* <TableCell align="right">{product.category}</TableCell> */}
                     <TableCell align="right">
                       <Stack
                         direction={"row"}
@@ -104,7 +102,10 @@ function List() {
                         justifyContent={"center"}
                       >
                         <Link to={`/admin/product/edit/${product.id}`}>
-                          <Button variant="contained" sx={{ bgcolor: "" }}>
+                          <Button
+                            variant="contained"
+                            sx={{ bgcolor: "warning.main" }}
+                          >
                             Edit
                           </Button>
                         </Link>

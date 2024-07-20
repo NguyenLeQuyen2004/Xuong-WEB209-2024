@@ -18,7 +18,7 @@ const Header = () => {
             <Link to="/">Home</Link>
           </Button>
           <Button color="inherit">
-            <Link to="/admin/product/list">Product List</Link>
+            <Link to="/about">About</Link>
           </Button>
           <Button color="inherit">
             <Link to="/login">Login</Link>

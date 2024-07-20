@@ -12,7 +12,7 @@ function Flash({ isShow }: FlashProps) {
       onClose={() => {}}
       autoHideDuration={1000}
     >
-      <Alert severity="success">This is a success Alert.</Alert>
+      <Alert severity="success">Successfull.</Alert>
     </Snackbar>
   );
 }

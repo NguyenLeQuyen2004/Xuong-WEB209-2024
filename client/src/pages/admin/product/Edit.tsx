@@ -27,6 +27,7 @@ function Edit() {
   const onSubmit = async (values: ProductFormParams) => {
     try {
       await instance.put(`/products/${id}`, values);
+      alert("Update successfull");
       nav("/admin/product/list");
     } catch (error) {}
   };

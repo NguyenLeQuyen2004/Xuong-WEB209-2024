@@ -28,8 +28,10 @@ const Login = () => {
   const onSubmit = async (values: LoginFormParams) => {
     try {
       const { data } = await instance.post("/login", values);
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("user", JSON.stringify(data.user)); // dung de luu object
+      console.log(data);
+
+      localStorage.setItem("token", data.accessToken);
+      localStorage.setItem("user", JSON.stringify(data.user)); // dung de luu doi tuong nguoi dung  (user) object
       alert("Login success, switch to Admin?");
       nav("/admin");
     } catch (error: any) {
